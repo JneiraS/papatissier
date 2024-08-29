@@ -2,13 +2,15 @@ import math
 import threading
 import time
 
-from src.commis import Commis
+from src.commis.commis import Commis
+from src.recipients.recipient import Recipient
 
 
-class FondeurChocolat(Commis,threading.Thread):
-    def __init__(self, quantite):
+class FondeurChocolat(Commis, threading.Thread):
+    def __init__(self, quantite, recipient: Recipient):
         threading.Thread.__init__(self)
-        self.quantite = quantite  # en grammes
+        self.quantite = quantite
+        self.recipient = recipient
 
     def run(self):
         print("Je mets de l'eau à chauffer dans une bouilloire")
