@@ -22,6 +22,7 @@ class FondeurChocolat(Commis, threading.Thread):
         time.sleep(1)
         nb_tours = math.ceil(self.ingredient.quantite / 10)
         for no_tour in range(1, nb_tours + 1):
-            print(f"Je mélange {self.ingredient.quantite} de chocolat à fondre, tour n°{no_tour}")
+            print(f"Je mets {self.ingredient.quantite} {self.ingredient.unite} de chocolat à fondre, "
+                  f"tour n°{no_tour}")
             time.sleep(.1)
         self.recipient.contient = self.ingredient
