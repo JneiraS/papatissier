@@ -4,7 +4,7 @@ from src.commis.batteur import BatteurOeufs
 from src.commis.fondeur import FondeurChocolat
 from src.ingredients.chocolat import Chocolat
 from src.ingredients.oeuf import Oeuf
-from src.recipients.cul_de_poule import ConcretRecipient
+from src.recipients.concret_recipients import ConcretRecipient
 
 
 class Verseur:
