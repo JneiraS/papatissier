@@ -15,7 +15,7 @@ class FondeurChocolat(Commis, threading.Thread):
 
     def run(self):
         print("Je mets de l'eau à chauffer dans une bouilloire")
-        time.sleep(8)
+        time.sleep(1)
         print("Je verse l'eau dans une casserole")
         time.sleep(2)
         print("J'y pose le bol rempli de chocolat")
