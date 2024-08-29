@@ -7,6 +7,9 @@ from src.recipients.recipient import Recipient
 
 
 class BatteurOeufs(Commis, threading.Thread):
+    """
+    Classe qui permet de battre des oeufs
+    """
     def __init__(self, ingredient: Ingredient, recipient: Recipient):
         threading.Thread.__init__(self)
         self.nb_oeufs = ingredient
