@@ -7,8 +7,6 @@ from src.ingredients.chocolat import Chocolat
 from src.ingredients.oeuf import Oeuf
 from src.recipients.concret_recipients import ConcretRecipient
 
-
-
 def main():
     # Recipients
     cul_de_poule_pour_les_oeufs = ConcretRecipient("Cul de poule")
@@ -44,7 +42,9 @@ def main():
     verseur_1.join()
     verseur_2.join()
 
-    print(cul_de_poule_pour_les_oeufs.sum_of_quantite())
+    print("\n\nLe Cul de poule contient un melange de: \n")
+    for element in cul_de_poule_pour_les_oeufs.sum_of_quantite():
+        print(element)
 
 
 if __name__ == "__main__":
