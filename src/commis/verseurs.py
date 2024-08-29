@@ -3,22 +3,29 @@ import threading
 import time
 
 from src.commis.commis import Commis
+from src.ingredients.ingredient import Ingredient
 from src.recipients.recipient import Recipient
 
 
 class Verseurs(Commis, threading.Thread):
-    def __init__(self, recipient: Recipient, quantite=None):
+    def __init__(self, recipient_a_verser: Recipient, recipient_final: Recipient | None = None):
         threading.Thread.__init__(self)
-        self.recipient = recipient
+        self.recipient_a_verser = recipient_a_verser
+        self.recipient_final = recipient_final
 
     def run(self):
-        print("Je mets de l'eau à chauffer dans une bouilloire")
-        time.sleep(8)
-        print("Je verse l'eau dans une casserole")
-        time.sleep(2)
-        print("J'y pose le bol rempli de chocolat")
-        time.sleep(1)
-        nb_tours = math.ceil(self.quantite / 10)
+        self.recipient_final.convert_ingredient_to_appareil()
+        nb_tours = math.ceil(self.recipient_a_verser.contient.quantite / 10)
+        qt_verser = self.recipient_a_verser.contient.quantite / nb_tours
         for no_tour in range(1, nb_tours + 1):
-            print(f"Je mélange {self.quantite} de chocolat à fondre, tour n°{no_tour}")
-            time.sleep(.1)  # temps supposé d'un tour de spatule
+            self.add_to_recipient(self.recipient_final, qt_verser)
+
+            print(
+                f"Je verse environt {qt_verser:.0f} {self.recipient_a_verser.contient.unite} de chocolat fondu, "
+                f"tout en melangeant, "
+                f"tour n°{no_tour}")
+            time.sleep(.01)
+
+    @staticmethod
+    def add_to_recipient(recipient: Recipient, quantite: float):
+        recipient.contient.add_ingredient(Ingredient("chocolat", quantite, "g"))
