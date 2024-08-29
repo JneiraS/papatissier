@@ -17,10 +17,14 @@ class Recipient(ABC):
             self.contient.add_ingredient(ingredient)
 
     def sum_of_quantite(self):
-        total = 0
+        produits_dict = {}
+
         if isinstance(self.contient, Appareil):
-            for qty in self.contient.composition:
-                total += qty.quantite
-            return total
+            for element in self.contient.composition:
+                if element.nom in produits_dict:
+                    produits_dict[element.nom].quantite += element.quantite
+                else:
+                    produits_dict[element.nom] = Ingredient(element.nom, element.quantite, element.unite)
+            return list(produits_dict.values())
         else:
             return self.contient.quantite
