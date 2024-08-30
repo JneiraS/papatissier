@@ -45,9 +45,7 @@ def main():
     verseur_2.join()
 
     # Affichage du resultat ----------------
-    print(f"\n\nLe {cul_de_poule_pour_les_oeufs.name} un melange de: \n")
-    for element in cul_de_poule_pour_les_oeufs.sum_of_quantite():
-        print(element)
+    print(f"\n On obtient, un {cul_de_poule_pour_les_oeufs}")
 
 
 if __name__ == "__main__":
