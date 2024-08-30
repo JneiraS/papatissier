@@ -19,7 +19,7 @@ class Ingredient(ABC):
         return self._quantite
 
     def __str__(self):
-        return (f"{self.quantite} {self.unite} de {self.nom}")
+        return f"{self.quantite} {self.unite} de {self.nom}"
 
     @quantite.setter
     def quantite(self, value):
