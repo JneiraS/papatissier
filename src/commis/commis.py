@@ -10,4 +10,4 @@ class Commis(threading.Thread, ABC):
         Lancer le commis
         :return:
         """
-        ...
+        pass

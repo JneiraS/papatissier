@@ -43,5 +43,11 @@ class Recipient(ABC):
             return [self.contient]
 
     def remove_ingredient(self, ingredient: Ingredient):
+        """
+        Enleve une quantité d'ingreédient
+        :param ingredient:
+        :return:
+        """
         if isinstance(self.contient, Ingredient):
             self.contient.quantite -= ingredient.quantite
+            return ingredient

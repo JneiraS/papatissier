@@ -7,7 +7,11 @@ from src.recipients.recipient import Recipient
 
 
 class TestAddToRecipient(unittest.TestCase):
+    """
+    Test de la fonction add_to_recipient
+    """
     def test_add_valid_ingredient(self):
+
         recipient = MagicMock(spec=Recipient)
         recipient.contient = MagicMock()
         ingredient = Ingredient("test", 10.0, "g")
@@ -17,7 +21,7 @@ class TestAddToRecipient(unittest.TestCase):
     def test_add_ingredient_with_negative_quantity(self):
         recipient = MagicMock(spec=Recipient)
         recipient.contient = MagicMock()
-        ingredient = Ingredient("test", -10.0, "g")
+        ingredient = Ingredient("test", 10.0, "g")
         with self.assertRaises(ValueError):
             Verseurs.add_to_recipient(recipient, -10.0, ingredient)
 

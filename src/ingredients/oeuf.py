@@ -15,12 +15,4 @@ class Oeuf(Ingredient):
 
         super().__init__("oeuf", quantite, unite)
 
-    @property
-    def quantite(self) -> float:
-        """
-        Get the quantity of eggs
 
-        :return: the quantity of eggs
-        :rtype: float
-        """
-        return self._quantite
