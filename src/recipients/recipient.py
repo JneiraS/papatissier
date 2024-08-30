@@ -41,3 +41,7 @@ class Recipient(ABC):
             return list(produits_dict.values())
         else:
             return [self.contient]
+
+    def remove_ingredient(self, ingredient: Ingredient):
+        if isinstance(self.contient, Ingredient):
+            self.contient.quantite -= ingredient.quantite
