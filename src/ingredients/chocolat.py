@@ -7,6 +7,3 @@ class Chocolat(Ingredient):
         super().__init__("chocolat", quantite, unite)
         self._quantite = quantite
 
-    @property
-    def quantite(self):
-        return self._quantite
