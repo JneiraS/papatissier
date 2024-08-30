@@ -8,44 +8,59 @@ from src.ingredients.oeuf import Oeuf
 from src.recipients.concret_recipients import ConcretRecipient
 
 
-def main():
+def preparation() -> tuple:
     """
-    Point d'entrée principal du programme.
-    Cette fonction initialise les participants, les ingrédients et les commis.
-    Enfin, elle imprime le résultat de la « préparation ».
+    Fonction qui permet de preparer les commis, les ingredients et les recipients
     """
     # Recipients ----------------
     cul_de_poule_pour_les_oeufs = ConcretRecipient("Cul de poule")
     bol_pour_le_chocolat_1 = ConcretRecipient("Bol")
     bol_pour_le_chocolat_2 = ConcretRecipient("Bol")
-
     # Ingredients ----------------
     oeufs = Oeuf(6, "unite")
     chocolat_1 = Chocolat(200, "g")
     chocolat_2 = Chocolat(200, "g")
-
     # Commis ----------------
     batteur = BatteurOeufs(oeufs, cul_de_poule_pour_les_oeufs)
-    fondeur_chocolat_1 = FondeurChocolat(chocolat_1, bol_pour_le_chocolat_1)
-    fondeur_chocolat_2 = FondeurChocolat(chocolat_2, bol_pour_le_chocolat_2)
-    verseur_1 = Verseurs(bol_pour_le_chocolat_1, cul_de_poule_pour_les_oeufs)
-    verseur_2 = Verseurs(bol_pour_le_chocolat_2, cul_de_poule_pour_les_oeufs)
+    fondeurs = [FondeurChocolat(chocolat_1, bol_pour_le_chocolat_1),
+                FondeurChocolat(chocolat_2, bol_pour_le_chocolat_2)]
+    verseurs = [Verseurs(bol_pour_le_chocolat_1, cul_de_poule_pour_les_oeufs), Verseurs(
+        bol_pour_le_chocolat_2, cul_de_poule_pour_les_oeufs)]
+
+    return (batteur,
+            cul_de_poule_pour_les_oeufs,
+            fondeurs,
+            verseurs,
+            bol_pour_le_chocolat_1, bol_pour_le_chocolat_2)
+
+
+def main():
+    """
+    Fonction principale
+    """
+    batteur, cul_de_poule_pour_les_oeufs, fondeurs, verseurs, bol_1, bol_2 = preparation()
 
     # Process ----------------
     batteur.start()
-    fondeur_chocolat_1.start()
-    fondeur_chocolat_2.start()
+
+    for fondeur in fondeurs:
+        fondeur.start()
+    for fondeur in fondeurs:
+        fondeur.join()
+
     batteur.join()
-    fondeur_chocolat_1.join()
-    fondeur_chocolat_2.join()
+
     print("\nJe peux à présent incorporer le chocolat aux oeufs\n")
-    verseur_1.start()
-    verseur_2.start()
-    verseur_1.join()
-    verseur_2.join()
+
+    for verseur in verseurs:
+        verseur.start()
+    for verseur in verseurs:
+        verseur.join()
 
     # Affichage du resultat ----------------
-    print(f"\n On obtient, un {cul_de_poule_pour_les_oeufs}")
+    print(f"\n On obtient, un {cul_de_poule_pour_les_oeufs}\n")
+    print(f" il rest: {bol_1.contient} dans {bol_1.name}")
+    print(f" il rest: {bol_2.contient} dans {bol_2.name}")
 
 
 if __name__ == "__main__":
