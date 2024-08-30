@@ -1,6 +1,5 @@
 import math
 import threading
-import time
 
 from src.commis.commis import Commis
 from src.ingredients.ingredient import Ingredient
@@ -22,13 +21,13 @@ class Verseurs(Commis, threading.Thread):
         qt_verser = self.recipient_a_verser.contient.quantite / nb_tours
         for no_tour in range(1, nb_tours + 1):
             self.add_to_recipient(self.recipient_final, qt_verser)
+            self.recipient_a_verser.remove_ingredient(Ingredient("chocolat", qt_verser, "g"))
 
             print(
                 f"Je verse environ {qt_verser:.0f} {self.recipient_a_verser.contient.unite} "
                 f"de chocolat fondu, "
                 f"tout en melangeant, "
                 f"tour n°{no_tour}")
-            time.sleep(.00000001)
 
     @staticmethod
     def add_to_recipient(recipient: Recipient, quantite: float):
