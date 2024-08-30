@@ -15,9 +15,9 @@ class FondeurChocolat(Commis, threading.Thread):
 
     def run(self):
         print("Je mets de l'eau à chauffer dans une bouilloire")
-        time.sleep(1)
-        print("Je verse l'eau dans une casserole")
         time.sleep(2)
+        print("Je verse l'eau dans une casserole")
+        time.sleep(1)
         print("J'y pose le bol rempli de chocolat")
         time.sleep(1)
         nb_tours = math.ceil(self.ingredient.quantite / 10)
