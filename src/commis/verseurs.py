@@ -28,14 +28,11 @@ class Verseurs(Commis, threading.Thread):
                 f"de chocolat fondu, "
                 f"tout en melangeant, "
                 f"tour n°{no_tour}")
-            time.sleep(.01)
+            time.sleep(.00000001)
 
     @staticmethod
     def add_to_recipient(recipient: Recipient, quantite: float):
         """
         Ajoute une quantité d'ingreédient au recipient
-        :param recipient:
-        :param quantite:
-        :return:
         """
         recipient.contient.add_ingredient(Ingredient("chocolat", quantite, "g"))
