@@ -14,8 +14,6 @@ class Verseurs(Commis, threading.Thread):
     def __init__(self, recipient_a_verser: Recipient, target_recipient: Recipient | None = None):
         """
         Initialisation d'un commis verseur
-        :param recipient_a_verser: recipient d'origine
-        :param target_recipient: recopient vers lequel on doit verser les ingreédients
         """
         threading.Thread.__init__(self)
         self.recipient_a_verser = recipient_a_verser
