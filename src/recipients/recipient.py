@@ -26,8 +26,18 @@ class Recipient(ABC):
 
     def sum_of_quantite(self) -> list[Ingredient]:
         """
-        Fait la somme des quantité de tous les ingredients
-        :return:
+        Calcule la somme des quantités d'ingrédients dans la composition d'un appareil ou renvoie
+        l'ingrédient lui-même.
+        Cette méthode traite deux cas :
+
+        1. S'il s'agit d'un appareil :
+           - Elle agrège les ingrédients en additionnant leurs quantités.
+           - Les ingrédients dupliqués sont fusionnés en un seul élément avec la quantité totale.
+
+        2. Si c'est un ingreédient :
+           - Elle renvoie simplement l'ingrédient.
+
+        :return: Une liste d'objets Ingredient représentant les ingrédients agrégés ou l'ingrédient unique.
         """
         produits_dict = {}
 
