@@ -7,6 +7,9 @@ class Appareil:
         self.composition: list[Ingredient] = []
 
     def add_ingredient(self, ingredient: Ingredient):
+        """
+        Ajoute une quantité d'ingreédient à l'appareil
+        """
         self.composition.append(ingredient)
 
     def __str__(self):
